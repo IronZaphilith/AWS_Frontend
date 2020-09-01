@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  br
+  br
+  div(class="container")
+    h2 Upload file
+    div(class="input-group mb-3")
+      div(class="custom-file")
+        input(type="file" class="custom-file-input" id="photoInput")
+        label(class="custom-file-label" for="photoInput") Choose file
+        script(type="text/javascript" src="javascripts/client.js")
+    div(class="input-group mb-3")
+      div(class="input-group-prepend")
+        label(class="input-group-text" for="rotationSelect") Rotation
+      select(class="custom-select" id="rotationSelect")
+        option(selected) Choose...
+        option(value="1") Right 90°
+        option(value="2") Upside down 180°
+        option(value="3") Left -90°
+    button(class="btn btn-primary" id="uploadBtn" disabled) Process!
+
