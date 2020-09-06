@@ -1,23 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  br
-  br
   div(class="container")
-    form(method="post" action="/" enctype="multipart/form-data")
-      h2 Upload file
-      div(class="form-group mb-3")
-        div(class="custom-file")
-          input(type="file" class="custom-file-input form-control" id="photoInput" name="photo")
-          label(class="custom-file-label" for="photoInput") Choose file
-      div(class="form-group input-group mb-3")
-        div(class="input-group-prepend")
-          label(class="input-group-text" for="rotationSelect") Rotation
-        select(class="custom-select form-control" id="rotationSelect" name="rotation")
-          option(selected) Choose...
-          option(value="1") Right 90°
-          option(value="2") Upside down 180°
-          option(value="3") Left -90°
-      button(class="btn btn-primary" type="submit" id="uploadBtn" disabled) Process!
-  script(type="text/javascript" src="javascripts/client.js")
+    script(type="text/javascript" src="javascripts/clientIndex.js")
+    h1(class="font-weight-light text-center text-lg-left mt-4 mb-0")= title
+    hr(class="mt-2 mb-5")
+    if photos && photos.length > 0
+      div(class="row text-center")
+        each photo, num in photos
+          div(class="col-lg-3 col-md-4 col-6")
+            a(class="d-block mb-4 h-100" id="photo-"+num)
+              img(class="img-fluid img-thumbnail" src=photo.url alt=photo.key)
+              label(class="font-weight-light")= photo.key
+    if !photos || photos.length === 0
+      div(class="alert alert-warning" role="alert") No photos found!

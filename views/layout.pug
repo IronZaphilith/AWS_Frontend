@@ -5,8 +5,17 @@ html
     title= title
     link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh", crossorigin="anonymous")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js")
-  body(style="text-align:center;")
+    script(src="http://malsup.github.com/jquery.form.js")
+  body
+    nav(class="navbar navbar-expand-lg navbar-dark bg-primary mb-3" id="navBar")
+      a(class="navbar-brand" href="#") AWS Image Editor
+      button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation")
+        span(class="navbar-toggler-icon")
+      div(class="collapse navbar-collapse")
+        div(class="navbar-nav")
+          a(class="nav-item nav-link" href="/" id="homeNav") Home
+          a(class="nav-item nav-link" href="/transformed" id="transformedNav") Transformed images
+          a(class="nav-item nav-link" href="/upload" id="uploadNav") Upload
     block content
     br
-    small(class="align-bottom fixed-bottom") Maciej Stokfisz 2020
+    small(class="align-bottom fixed-bottom" style="text-align:center;") Maciej Stokfisz 2020
