@@ -7,7 +7,19 @@ if (window.location.href.includes('transformed')) {
 $('a.photo-class').on('click', function (e) {
     console.log("click"+e.target.getAttribute('alt'));
     $('#imagepreview').attr('src', e.target.getAttribute('src')).attr('key', e.target.getAttribute('alt'));
+    $('#keyInput').val(e.target.getAttribute('alt'));
     $('#imagemodal').modal('show');
+})
+
+function resetModal() {
+    $("#photoEditForm")[0].reset()
+    $('#processBtn').attr("disabled", true);
+    $('#imagepreview').removeAttr('src').removeAttr('key');
+}
+
+$('button.custom-close').on('click', function (e) {
+    resetModal();
+    $('#imagemodal').modal('hide');
 })
 
 let isRotationValid = false;
@@ -28,6 +40,7 @@ $('#rotationSelect').on('change', function(e) {
 $('#photoEditForm').ajaxForm({
     beforeSubmit: function () {
         console.log('Submitted!');
+        resetModal();
         $('#imagemodal').modal('hide');
         isFileUploading = true;
         $('#processBtn').attr('disabled', true);

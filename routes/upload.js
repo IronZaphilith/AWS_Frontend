@@ -26,15 +26,13 @@ router.get('/', function(req, res, next) {
 router.post('/', upload.single("photo" /* name attribute of <file> element in your form */),
 async function (req, res) {
   let responseStatus = 201;
-  // console.log(req.body.rotation);
   const tempPath = req.file.path;
   fs.rename(tempPath, path.join(__dirname, "./tmp/"+req.file.originalname), err => {
     if (err) return handleError(err, res);
   });
   let form;
-  await axios.post('http://localhost:5000/signed-form-upload', {
-    filename: new Date().toISOString() + "_" +req.file.originalname,
-    rotation: req.body.rotation
+  await axios.post(process.env.BACKEND_URL + '/signed-form-upload', {
+    filename: req.file.originalname,
   }).then(res => {
     form = res.data;
   }).catch(err => {
@@ -44,8 +42,7 @@ async function (req, res) {
   });
   const form_data = createForm(form.fields);
   form_data.append('file', fs.createReadStream(path.join(__dirname, "./tmp/"+req.file.originalname)));
-  // console.log(form_data);
-  form_data.submit("https://images-to-process-mstokfisz.s3.amazonaws.com", function(err, res) {
+  await form_data.submit("https://images-to-process-mstokfisz.s3.amazonaws.com", function(err, res) {
     console.log(res.statusCode + " " + res.statusMessage);
     if (err) {
       responseStatus = res.statusCode;

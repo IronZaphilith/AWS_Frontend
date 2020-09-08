@@ -8,14 +8,6 @@ block content
         div(class="custom-file")
           input(type="file" class="custom-file-input form-control" id="photoInput" name="photo")
           label(class="custom-file-label" for="photoInput") Choose file
-      div(class="form-group input-group mb-3")
-        div(class="input-group-prepend")
-          label(class="input-group-text" for="rotationSelect") Rotation
-        select(class="custom-select form-control" id="rotationSelect" name="rotation")
-          option(selected) Choose...
-          option(value="1") Right 90°
-          option(value="2") Upside down 180°
-          option(value="3") Left -90°
       button(class="btn btn-primary" type="submit" id="uploadBtn" disabled) Upload!
   script(type="text/javascript" src="javascripts/clientUpload.js")
 

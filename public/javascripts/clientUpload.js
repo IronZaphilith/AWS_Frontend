@@ -1,4 +1,3 @@
-let isRotationValid = false;
 let isFileValid = false;
 let isFileUploading = false;
 
@@ -18,7 +17,7 @@ $('#photoInput').on('change',function(e){
         isFileValid = true;
         //replace the "Choose a file" label
         $(this).next('.custom-file-label').html(fileName);
-        if (isRotationValid && !isFileUploading) {
+        if (!isFileUploading) {
             $('#uploadBtn').removeAttr("disabled");
         }
     }
@@ -26,12 +25,10 @@ $('#photoInput').on('change',function(e){
 
 $('#rotationSelect').on('change', function(e) {
     if (e.target.value !== 'Choose...') {
-        isRotationValid = true;
         if (isFileValid && !isFileUploading) {
             $('#uploadBtn').removeAttr("disabled");
         }
     } else {
-        isRotationValid = false;
         $('#uploadBtn').attr("disabled", true);
     }
 })
@@ -43,14 +40,14 @@ $('#photoUploadForm').ajaxForm({
         },
         success : function (responseText, statusText) {
             isFileUploading = false;
-            if (isRotationValid && isFileValid) {
+            if (isFileValid) {
                 $('#uploadBtn').html('Upload!').removeAttr("disabled");
             }
             alert("File uploaded!");
         },
         error: function (response) {
             isFileUploading = false;
-            if (isRotationValid && isFileValid) {
+            if (isFileValid) {
                 $('#uploadBtn').html('Upload!').removeAttr("disabled");
             }
             if (response.status === 404) {

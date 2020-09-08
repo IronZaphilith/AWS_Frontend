@@ -10,7 +10,7 @@ block content
           div(class="col-lg-3 col-md-4 col-6")
             a(href="#" class="d-block mb-4 h-100 photo-class" id="photo-"+num)
               img(class="img-fluid img-thumbnail" src=photo.url alt=photo.key)
-              label(class="font-weight-light")= photo.key
+              label(class="font-weight-light")= photo.filename
     if !photos || photos.length === 0
       div(class="alert alert-warning" role="alert") No photos found!
   div(class="modal fade bd-example-modal-lg" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
@@ -18,7 +18,7 @@ block content
       div(class="modal-content")
         div(class="modal-header")
           h4(class="modal-title" id="myModalLabel") Image preview
-          button(type="button" class="close" data-dismiss="modal")
+          button(type="button" class="close custom-close")
             span(aria-hidden="true") &times;
             span(class="sr-only") Close
         div(class="modal-body float-center")
@@ -29,6 +29,7 @@ block content
               if type === 'index'
                 div(class="col-9")
                   form(method="post" action="/" id="photoEditForm")
+                    input(type="hidden" class="form-control" id="keyInput" name="key")
                     div(class="form-group input-group mb-3")
                       div(class="input-group-prepend")
                         label(class="input-group-text" for="rotationSelect") Rotation
@@ -39,5 +40,5 @@ block content
                         option(value="3") Left -90°
                       button(class="btn btn-primary" type="submit" id="processBtn" disabled) Process!
               div(class="col float-right")
-                button(type="button" class="btn btn-default float-right" data-dismiss="modal") Close
+                button(type="button" class="btn btn-default float-right custom-close") Close
   script(type="text/javascript" src="javascripts/clientIndex.js")
