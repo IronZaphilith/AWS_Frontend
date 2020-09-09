@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  div(class="container" style="text-align:center;")
+    form(method="post" action="/upload" enctype="multipart/form-data" id="photoUploadForm")
+      h2 Upload file
+      div(class="form-group mb-3")
+        div(class="custom-file")
+          input(type="file" class="custom-file-input form-control" id="photoInput" name="photo")
+          label(class="custom-file-label" for="photoInput") Choose file
+      button(class="btn btn-primary" type="submit" id="uploadBtn" disabled) Upload!
+  script(type="text/javascript" src="javascripts/clientUpload.js")
+
